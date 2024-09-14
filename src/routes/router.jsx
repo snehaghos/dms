@@ -1,9 +1,9 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import GuestLayout from '../Features/Layouts/GuestLayout'
-import Indexhome from '../Features/GuestInterface/IndexHome'
+import Indexhome from '../Features/Guest/IndexHome'
 import Login from '../Features/Login/components/Login'
-import AboutUs from '../Features/GuestInterface/pages/AboutUs'
+import AboutUs from '../Features/Guest/pages/AboutUs'
 
 
 
