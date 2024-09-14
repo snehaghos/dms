@@ -1,9 +1,11 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import GuestLayout from '../Layouts/GuestLayout'
-import Indexhome from '../GuestInterface/IndexHome'
-import AboutUs from '../GuestInterface/pages/AboutUs'
-import Login from '../Login/components/Login'
+import GuestLayout from '../Features/Layouts/GuestLayout'
+import Indexhome from '../Features/GuestInterface/IndexHome'
+import Login from '../Features/Login/components/Login'
+import AboutUs from '../Features/GuestInterface/pages/AboutUs'
+
+
 
 const Router = () => {
     return (
