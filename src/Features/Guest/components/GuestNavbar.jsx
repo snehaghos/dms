@@ -21,7 +21,7 @@ const GuestNavbar = () => {
             <li><a href="#features" className="hover:underline">Features</a></li>
             <li><a href="#examples" className="hover:underline">Examples</a></li>
             <li><a className="hover:underline" onClick={handleAboutUsClick}>About us</a></li>
-            <li><a className="px-4 py-2 text-blue-600 bg-white rounded hover:bg-gray-200" onClick={handleLoginClick}>Login</a></li>
+            <li><a className="px-4 py-2 text-blue-600 bg-white rounded hover:bg-gray-200 hover:cursor-pointer" onClick={handleLoginClick}>Login</a></li>
           </ul>
         </nav>
       </div>

@@ -13,6 +13,7 @@ export const StateProvider=({children})=>{
     const setToken= (token)=>{
         _setToken(token);
         if(token){
+            console.log(token);
             localStorage.setItem("ACCESS_TOKEN",token);
         }
         else{

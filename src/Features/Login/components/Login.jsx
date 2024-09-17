@@ -14,9 +14,9 @@ const Login = () => {
   const loginMutation = useMutation({
     mutationFn: authLogin,
     onSuccess: (response) => {
-      console.log(response);
-      setUser(response.data);   // Ensure response.data contains the correct user data.
-      setToken(response.token); // Ensure response.token contains the correct token.
+      console.log("Response = ",response.data.data);
+      setUser(response.data.data);   // Ensure response.data contains the correct user data.
+      setToken(response.data.token); // Ensure response.token contains the correct token.
       navigate('/home');
     },
     onError: (err) => {
