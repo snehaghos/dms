@@ -4,6 +4,7 @@ import axiosClient from "../../../axios-client"
 export function authLogin(payload){
     return axiosClient.post("/auth/login",payload)
     .then(({data})=>{
+        console.log(data);
         return data
     })
     .catch((error)=>{

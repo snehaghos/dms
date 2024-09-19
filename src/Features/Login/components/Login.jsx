@@ -6,7 +6,7 @@ import { authLogin } from '../services/auth-api';
 import axiosClient from '../../../axios-client';
 
 const Login = () => {
-  const { setUser, setToken } = useStateContext();
+  const { setUser, setToken, setRefreshToken } = useStateContext();
   const usernameRef = useRef();
   const passwordRef = useRef();
   const navigate = useNavigate();
@@ -16,8 +16,9 @@ const Login = () => {
     onSuccess: (response) => {
       console.log("Response = ",response.data.data);
       setUser(response.data.data);   // Ensure response.data contains the correct user data.
-      setToken(response.data.token); // Ensure response.token contains the correct token.
-      navigate('/home');
+      setToken(response.data.token,response.data.refreshToken); // Ensure response.token contains the correct token.
+      // setRefreshToken(response.data.refreshToken);
+      // navigate('/home');
     },
     onError: (err) => {
       console.log('Login failed:', err);
