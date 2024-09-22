@@ -49,7 +49,7 @@ const AuthLayout = () => {
     <>
     <AuthNavbar/>
     <Outlet/>
-    <div>AuthLayout</div>
+    <div className='mt-10'>AuthLayout</div>
     <div><span>Hello </span><span>{authUser.data.name}</span></div>
     </>
   )
