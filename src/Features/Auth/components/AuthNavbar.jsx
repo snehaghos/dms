@@ -13,7 +13,7 @@ const AuthNavbar = () => {
     }
     return (
         <>
-            <header className="absolute w-full p-4 text-white bg-slate-900">
+            <header className=" w-full p-4 text-white bg-slate-900 fixed top-0">
                 <div className="container flex items-center justify-between mx-auto">
                     <h1 className="text-2xl font-bold">DMS</h1>
                     <nav>

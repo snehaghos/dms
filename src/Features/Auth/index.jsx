@@ -3,9 +3,9 @@ import Home from './pages/Home'
 
 const index = () => {
   return (
-    <div>
+    <>
       <Home/>
-    </div>
+    </>
   )
 }
 

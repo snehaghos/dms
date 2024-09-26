@@ -6,6 +6,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { fetchUser } from '../Login/services/user-api';
 import { fetchAllDocs } from '../Login/services/document-api';
 import AuthNavbar from '../Auth/components/AuthNavbar';
+import Home from '../Auth/pages/Home';
 
 const AuthLayout = () => {
   const { user, token, setUser, setToken } = useStateContext();
@@ -47,10 +48,16 @@ const AuthLayout = () => {
     // };
   return (
     <>
-    <AuthNavbar/>
-    <Outlet/>
-    <div className='mt-10'>AuthLayout</div>
-    <div><span>Hello </span><span>{authUser.data.name}</span></div>
+      <div className=''>
+        <AuthNavbar/>
+        {/* <div className='mt-20'>AuthLayout</div> */}
+        <div className='mt-20 text-2xl '><span>Hello, </span><span>{authUser.data.name}</span></div>
+        {/* <Home/> */}
+        <main className='mt-10'>
+
+        <Outlet/>
+        </main>
+      </div>
     </>
   )
 }

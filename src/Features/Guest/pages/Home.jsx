@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Indexhome = () => {
+const Home = () => {
   return (
     <div className='h-full w-full flex justify-center items-center'>
       indexhome
@@ -8,4 +8,4 @@ const Indexhome = () => {
   )
 }
 
-export default Indexhome
+export default Home
