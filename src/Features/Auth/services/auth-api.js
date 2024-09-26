@@ -11,14 +11,26 @@ export function authLogin(payload){
     })
 }
 
-export function authLogout(){
-    return axiosClient.post("/logout")
-    .then(()=>{
+// export function authLogout(){
+//     return axiosClient.post("/logout")
+//     .then(()=>{
 
+//     })
+//     .catch((error)=>{
+//         throw error
+//     })
+// }
+
+
+
+export function authLogout() {
+    return axiosClient.post("/auth/logout")
+    .then(() => {
+        localStorage.removeItem("ACCESS_TOKEN");
     })
-    .catch((error)=>{
-        throw error
-    })
+    .catch((error) => {
+        throw error;
+    });
 }
 
 export function authRegister(payload){

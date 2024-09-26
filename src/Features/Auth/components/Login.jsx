@@ -1,51 +1,26 @@
 import React, { useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useStateContext } from '../contexts/StateContext';
-import { useMutation } from '@tanstack/react-query';
-import { authLogin } from '../services/auth-api';
-import axiosClient from '../../../axios-client';
+
+import { useLogin } from '../hooks/useLogin';
+
 
 const Login = () => {
-  const { setUser, setToken } = useStateContext();
+  const loginMutation=useLogin();
+  
   const usernameRef = useRef();
   const passwordRef = useRef();
-  const navigate = useNavigate();
 
-  const loginMutation = useMutation({
-    mutationFn: authLogin,
-    onSuccess: (response) => {
-      console.log(response);
-      setUser(response.data);   // Ensure response.data contains the correct user data.
-      setToken(response.token); // Ensure response.token contains the correct token.
-      navigate('/home');
-    },
-    onError: (err) => {
-      console.log('Login failed:', err);
-    },
-  });
+
+
 
   const handleSubmit = (e) => {
-    e.preventDefault();  // Prevent page refresh
-
-    // Get the values from input refs
+    e.preventDefault();
     const payload = {
       username: usernameRef.current.value,
       password: passwordRef.current.value,
     };
-
-    // Trigger the login mutation with the payload
     loginMutation.mutate(payload);
   };
-
-
-  const handleLogin=()=>{
-    axiosClient.get("/home").then(res=>{
-      console.log(res.data);
-    }).catch(err=>{
-      console.log(err);
-      
-    })
-  }
 
   return (
     <section className="bg-gray-50">
@@ -117,9 +92,7 @@ const Login = () => {
               </p>
             </form>
 
-            <button onClick={handleLogin}>
-              Login
-            </button>
+
           </div>
         </div>
       </div>

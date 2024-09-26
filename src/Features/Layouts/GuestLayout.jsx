@@ -1,16 +1,19 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
+import React, { Suspense } from 'react'
+
 import GuestNavbar from '../Guest/components/GuestNavbar'
 
 
 
 
- const GuestLayout = () => {
+const GuestLayout = ({children}) => {
+  console.log("Hoo this is guest");
+  
   return (
     <>
-          <GuestNavbar/>
-            <Outlet/>
-          
+     
+        <GuestNavbar />
+        {children}
+   
 
     </>
   )

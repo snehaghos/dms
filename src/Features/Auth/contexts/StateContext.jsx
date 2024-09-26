@@ -3,13 +3,17 @@ import { createContext, useContext, useState } from "react";
 const StateContext= createContext({
     user:null,
     token:null,
+    refreshToken:null,
     setUser:()=>{},
     setToken:()=>{},
+    setRefreshToken:()=>{}
 });
 
 export const StateProvider=({children})=>{
     const [user, setUser]=useState({});
     const [token, _setToken]= useState(localStorage.getItem("ACCESS_TOKEN"));
+    const [refreshToken,_setRefreshToken]=useState(localStorage.getItem("REFRESH_TOKEN"));
+    
     const setToken= (token)=>{
         _setToken(token);
         if(token){
@@ -19,9 +23,19 @@ export const StateProvider=({children})=>{
             localStorage.removeItem("ACCESS_TOKEN");
         }
     };
+
+    const setRefreshToken= (refreshToken)=>{
+        _setRefreshToken(refreshToken);
+        if(refreshToken){
+            localStorage.setItem("REFRESH_TOKEN",refreshToken);
+        }
+        else{
+            localStorage.removeItem("REFRESH_TOKEN");
+        }
+    };
     return(
         <StateContext.Provider value={{ 
-            user, token, setUser, setToken,
+            user, token, refreshToken,setUser, setToken, setRefreshToken
          }}
         >
             {children}

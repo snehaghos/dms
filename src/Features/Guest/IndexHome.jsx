@@ -1,10 +1,14 @@
 import React from 'react'
+import Carousal from './components/Carousal'
 
 const Indexhome = () => {
   return (
-    <div>
-      
+    <>
+    <div className='pt-12'>
+    <Carousal/>
     </div>
+     
+    </>
   )
 }
 

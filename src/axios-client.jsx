@@ -7,7 +7,9 @@ const axiosClient = axios.create({
 let ApiCallCount=0
 axiosClient.interceptors.request.use((config) => {
     const token = localStorage.getItem('ACCESS_TOKEN')
+    const refreshToken=localStorage.getItem('REFRESH_TOKEN')
     config.headers.Authorization = `Bearer ${token}`
+    //  config.headers.Authorization = `Bearer ${refreshToken}`
     // config.headers.Accept=application/json
     // config.headers["Content-Type"]=application/json
 
@@ -27,6 +29,7 @@ axiosClient.interceptors.response.use((response) => {
 
             if (response.status === 401) {
                 localStorage.removeItem('ACCESS_TOKEN')
+                localStorage.removeItem('REFRESH_TOKEN')
             }
         } catch (e) {
             console.log(e);

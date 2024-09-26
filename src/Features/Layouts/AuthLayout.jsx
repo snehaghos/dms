@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { Suspense } from 'react'
+import Nav from '../Auth/components/Nav'
 
-const AuthLayout = () => {
+
+const AuthLayout = ({ children }) => {
+  console.log("AuthLayout is rendering");
   return (
-    <div>AuthLayout</div>
-  )
-}
+    <div>
+      <Nav/>
+    {children}
+    </div>
+  );
+};
 
 export default AuthLayout
