@@ -5,11 +5,11 @@ import GuestNavbar from '../Guest/components/GuestNavbar'
 
 
 
- const GuestLayout = () => {
+ const GuestLayout = ({children}) => {
   return (
     <>
           <GuestNavbar/>
-            <Outlet/>
+          {children}
           
 
     </>

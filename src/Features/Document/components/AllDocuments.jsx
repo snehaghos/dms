@@ -1,17 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axiosClient from '../../../axios-client'
 import axios from 'axios'
+import { useStateContext } from '../../Auth/contexts/StateContext'
+import { useQuery } from '@tanstack/react-query'
+import { fetchUser } from '../../Auth/services/user-api'
 
 const AllDocuments = () => {
 
-    const [userId, setUserId] = useState(1)
+    // const [userId, setUserId] = useState(1)
     const [files, setFiles] = useState(null)
     // const navigate= useNavigate()
-    const handleClick = async () => {
+    // const handleClick = async () => {
+    useEffect(()=>{
+
         console.log("hello all documents")
-        
-        axiosClient.get(`/doc/getbyuser/${userId}`)
+        // console.log(authUser.data.id)
+        // console.log("user id", user.id)
+        axiosClient.get(`/doc/getbytoken`)
             .then(response => {
                 // console.log("response", response.data)
                 setFiles(response.data)
@@ -20,11 +26,12 @@ const AllDocuments = () => {
             .catch(error => {
                 console.log(error)
             })
-    };
+    },[])
+    
 
     return (
         <>
-            <div className='' onClick={handleClick}>
+            <div className='' >
                 All documents
             </div>
             <div className='flex justify-center items-center flex-wrap gap-5'>

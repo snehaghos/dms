@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import axiosClient from '../../../axios-client';
 
 const UploadDoc = () => {
   const [file, setFile] = useState(null);
@@ -27,7 +28,7 @@ const UploadDoc = () => {
     formData.append('tags', JSON.stringify(tags.split(',').map(tag => ({ name: tag.trim() }))));
 
     try {
-      const response = await axios.post('http://localhost:8080/api/doc/upload', formData ,{
+      const response = await axiosClient.post('http://localhost:8080/api/doc/upload', formData ,{
         headers: {
           'Content-Type': 'multipart/form-data',
           'Access-Control-Allow-Origin': '*',

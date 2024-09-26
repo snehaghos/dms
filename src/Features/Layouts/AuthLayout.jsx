@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-import { authLogout } from '../Login/services/auth-api';
+import { authLogout } from '../Auth/services/auth-api';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { useStateContext } from '../Login/contexts/StateContext';
+import { useStateContext } from '../Auth/contexts/StateContext';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { fetchUser } from '../Login/services/user-api';
-import { fetchAllDocs } from '../Login/services/document-api';
+import { fetchUser } from '../Auth/services/user-api';
+import { fetchAllDocs } from '../Auth/services/document-api';
 import AuthNavbar from '../Auth/components/AuthNavbar';
 import Home from '../Auth/pages/Home';
 
-const AuthLayout = () => {
+const AuthLayout = ({children}) => {
   const { user, token, setUser, setToken } = useStateContext();
     const [isOpen, setOpen] = useState(true);
     const navigate= useNavigate();
@@ -31,21 +31,22 @@ const AuthLayout = () => {
     //         console.log(err);
     //     }
     // })
-    if (!token) {
-        console.log("no token")
-        navigate('/home')
-    }
+    // if (!token) {
+    //     console.log("no token")
+    //     navigate('/home')
+    // }
     if(authUser.isError){
       return "Something went wrong"+authUser.error.message
     }
     if(authUser.isFetching){
       return "loading..."
     }
-    console.log({...authUser});
+    // console.log({...authUser});
     // const onLogout = (ev) => {
     //     ev.preventDefault();
     //     logout.mutate()
     // };
+    // setUser(authUser)
   return (
     <>
       <div className=''>
@@ -55,7 +56,7 @@ const AuthLayout = () => {
         {/* <Home/> */}
         <main className='mt-10'>
 
-        <Outlet/>
+        {children}
         </main>
       </div>
     </>
