@@ -18,8 +18,6 @@ const PlayGround = () => {
   const [loading, setLoading] = useState(true)
 
   const isValidToken = () => {
-
-
     if (!token) {
       setIsGuest(true);
       return;
