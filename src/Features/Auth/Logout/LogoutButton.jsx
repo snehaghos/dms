@@ -6,7 +6,7 @@ const LogoutButton = () => {
     const { setToken } = useStateContext();
 
     const handleLogout = () => {
-        authLogout()
+        authLogout
             .then(() => {
                 setToken(null); 
                 localStorage.removeItem("ACCESS_TOKEN"); 
@@ -19,7 +19,7 @@ const LogoutButton = () => {
     return (
         <button
             onClick={handleLogout}
-            className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300 transition duration-200 ease-in-out"
+            className="flex justify-center items-center px-4 py-2 rounded-md bg-white text-black ease-in-out"
         >
             Logout
         </button>

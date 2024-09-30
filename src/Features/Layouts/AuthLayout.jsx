@@ -20,21 +20,6 @@ const AuthLayout = ({children}) => {
     })
     
 
-    // const logout = useMutation({
-    //     mutationFn: authLogout,
-    //     onSuccess: () => {
-    //         setUser({});
-    //         setToken(null);
-    //         // toast.success("Logout Successful")
-    //     },
-    //     onError: (err) => {
-    //         console.log(err);
-    //     }
-    // })
-    // if (!token) {
-    //     console.log("no token")
-    //     navigate('/home')
-    // }
     if(authUser.isError){
       return "Something went wrong"+authUser.error.message
     }
@@ -52,9 +37,9 @@ const AuthLayout = ({children}) => {
       <div className=''>
         <AuthNavbar/>
         {/* <div className='mt-20'>AuthLayout</div> */}
-        <div className='mt-20 text-2xl '><span>Hello, </span><span>{authUser.data.name}</span></div>
+        <div className='mt-20 text-2xl ps-20 flex justify-left items-center'><span>Hello, </span><span>{authUser.data.name}</span></div>
         {/* <Home/> */}
-        <main className='mt-10'>
+        <main className=' ps-20 pe-20'>
 
         {children}
         </main>

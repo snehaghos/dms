@@ -13,7 +13,7 @@ export function authLogin(payload){
 }
 
 export function authLogout(){
-    return axiosClient.post("/logout")
+    return axiosClient.post("/auth/logout")
     .then(()=>{
 
     })

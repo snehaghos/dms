@@ -8,15 +8,18 @@ import { StateProvider } from './Features/Auth/contexts/StateContext.jsx'
 import PlayGround from './routes/PlayGround.jsx'
 import { queryClient } from './queryClient.jsx'
 import { BrowserRouter } from 'react-router-dom'
+import { DocumentProvider } from './Features/Auth/contexts/DocumentContext.jsx'
 
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient} >
       <StateProvider>
+        <DocumentProvider>
         <BrowserRouter>
           <PlayGround />
         </BrowserRouter>
+        </DocumentProvider>
       </StateProvider>
     </QueryClientProvider>
   </React.StrictMode>,
