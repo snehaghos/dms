@@ -1,6 +1,7 @@
 import React from 'react'
 import AllDocuments from '../../Document/components/AllDocuments'
 import { useNavigate } from 'react-router-dom'
+
 // import AddDocument from '../components/AddDocument'
 
 
@@ -28,6 +29,8 @@ const Home = () => {
       <div className='border-2 border-gray-900 bg-gray-900 text-white hover:cursor-pointer rounded p-3' onClick={handleClick}>
         Add New Document
       </div>
+
+      
     </div>
     </>
   )

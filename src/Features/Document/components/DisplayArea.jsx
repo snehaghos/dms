@@ -1,0 +1,75 @@
+import React from 'react'
+import { useDocumentContext } from '../../Auth/contexts/DocumentContext'
+import SourceToCanvas from '../../DocumentConversion/components/SourceToCanvas'
+import PdfGenerator from '../../DocumentConversion/components/PdfGenerator'
+
+
+
+
+
+const icons = [
+    {
+        mime_type: "application/pdf",
+        src: "https://www.science.co.il/internet/browsers/PDF-doc-256.png",
+    },
+    {
+        mime_type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        src: "https://static.vecteezy.com/system/resources/previews/036/897/160/non_2x/ms-word-office-file-icon-free-png.png",
+    },
+    {
+        mime_type: "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+        src: "https://www.freeiconspng.com/thumbs/ppt-icon/microsoft-powerpoint-icon-microsoft-powerpoint-2.png",
+    },
+    {
+        mime_type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        src: "https://image.similarpng.com/very-thumbnail/2021/09/Microsoft-Excel-icon-design-on-transparent-background-PNG.png"
+    }
+
+]
+const DisplayArea = () => {
+    const { files, isConversion } = useDocumentContext()
+  return (
+    <>
+      <div className='gap-5 gallery'>
+                {files && files.map((item, index) => (
+
+                    <div className=' mb-5 overflow-hidden rounded  transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-105 duration-300' key={index}>
+
+
+                        {/* <div  className=' w-full'> */}
+                            {
+                                ["image/jpeg", "image/png"].includes(item.mime_type) ?
+                                    <>
+                                        <div className='relative'>
+                                            {
+                                                !isConversion && 
+                                                <SourceToCanvas url={item.url} />
+                                            }
+                                            {
+                                                isConversion && 
+                                                <div className='absolute z-1 h-full w-full'>
+                                                    <PdfGenerator url={item.url}/>
+                                                </div>
+                                            }
+                                            <img src={item.url} alt="There is some problem with this image" />     
+                                        </div>
+                                    </>
+                                    :
+                                    <img src={icons.find(x => x.mime_type == item.mime_type).src} alt="" className={`h-full w-full `}/>
+                            }
+
+                        {/* </div> */}
+
+
+
+
+                    </div>
+                ))}
+            </div>
+    </>
+  )
+}
+
+export default DisplayArea
+
+
