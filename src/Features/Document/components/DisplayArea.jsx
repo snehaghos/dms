@@ -2,9 +2,8 @@ import React from 'react'
 import { useDocumentContext } from '../../Auth/contexts/DocumentContext'
 import SourceToCanvas from '../../DocumentConversion/components/SourceToCanvas'
 import PdfGenerator from '../../DocumentConversion/components/PdfGenerator'
-
-
-
+import ViewDocument from './ViewDocument'
+import { useNavigate } from 'react-router-dom'
 
 
 const icons = [
@@ -28,37 +27,44 @@ const icons = [
 ]
 const DisplayArea = () => {
     const { files, isConversion } = useDocumentContext()
-  return (
-    <>
-      <div className='gap-5 gallery'>
+    const navigate= useNavigate()
+
+    const handleClick=(url)=>{
+        console.log("Parent :", url)
+        navigate("/viewdocument",{ state: { url: url } })
+    }
+    return (
+        <>
+            <div className='gap-5 gallery'>
                 {files && files.map((item, index) => (
 
                     <div className=' mb-5 overflow-hidden rounded  transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-105 duration-300' key={index}>
 
 
-                        {/* <div  className=' w-full'> */}
-                            {
-                                ["image/jpeg", "image/png"].includes(item.mime_type) ?
-                                    <>
-                                        <div className='relative'>
-                                            {
-                                                !isConversion && 
-                                                <SourceToCanvas url={item.url} />
-                                            }
-                                            {
-                                                isConversion && 
-                                                <div className='absolute z-1 h-full w-full'>
-                                                    <PdfGenerator url={item.url}/>
-                                                </div>
-                                            }
-                                            <img src={item.url} alt="There is some problem with this image" />     
-                                        </div>
-                                    </>
-                                    :
-                                    <img src={icons.find(x => x.mime_type == item.mime_type).src} alt="" className={`h-full w-full `}/>
-                            }
+                        {
+                            ["image/jpeg", "image/png"].includes(item.mime_type) ?
+                                <>
+                                    <div className='relative'>
+                                        {
+                                            !isConversion &&
+                                            <SourceToCanvas url={item.url} />
+                                        }
+                                        {
+                                            isConversion &&
+                                            <div className='absolute z-1 h-full w-full'>
+                                                <PdfGenerator url={item.url} />
+                                            </div>
+                                        }
+                                        <img src={item.url} alt="There is some problem with this image" />
+                                    </div>
+                                </>
+                                :
+                                <img src={icons.find(x => x.mime_type == item.mime_type).src} alt="" className={`h-full w-full `} />
+                        }
 
-                        {/* </div> */}
+                        <div className='border rounded flex justify-center items-center' onClick={()=>handleClick(item.url)}>
+                            Open PDF
+                        </div>
 
 
 
@@ -66,8 +72,8 @@ const DisplayArea = () => {
                     </div>
                 ))}
             </div>
-    </>
-  )
+        </>
+    )
 }
 
 export default DisplayArea

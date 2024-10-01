@@ -5,6 +5,7 @@ import AllDocuments from '../Features/Document/components/AllDocuments';
 import { Route, Routes } from 'react-router-dom';
 import UploadDoc from '../Features/Document/components/UploadDoc';
 import MultiImageToPdf from '../Features/DocumentConversion/pages/MultiImageToPdf';
+import ViewDocument from '../Features/Document/components/ViewDocument';
 
 const AuthRouter = () => {
     console.log("I am in auth Layout");
@@ -17,6 +18,7 @@ const AuthRouter = () => {
             <Route path="/upload-document" element={<UploadDoc/>}/>
             <Route path="/all-document" element={<AllDocuments/>}/>
             <Route path="/to-pdf" element={<MultiImageToPdf/>}/>
+            <Route path="/viewdocument" element={<ViewDocument/>}/>
       </Routes>
     </>
   )
