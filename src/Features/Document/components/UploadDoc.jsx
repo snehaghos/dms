@@ -4,33 +4,35 @@ import axiosClient from '../../../axios-client';
 import { SlCloudUpload } from "react-icons/sl";
 
 const UploadDoc = () => {
-  const [file, setFile] = useState(null);
-  const [name, setName] = useState('');
+  
+  const [selectedFiles, setSelectedFiles] = useState([]);
   const [tags, setTags] = useState('');
   const [uploadStatus, setUploadStatus] = useState('');
   const [isDraggingOver, setDraggingOver] = useState(false)
 
   const inputRef = useRef()
 
-  // const handleFileChange = (event) => {
-  //   setFile(event.target.files[0]);
-  // };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log("button clicked!")
+    console.log(selectedFiles)
 
-    if (!file) {
+    if (!selectedFiles.length) {
       setUploadStatus('Please select a file to upload');
       return;
     }
     const token = localStorage.getItem('ACCESS_TOKEN');
 
+
+    // for (const file of selectedFiles) {
+
     const formData = new FormData();
-    formData.append('file', file);
-    formData.append('name', name);
+    for (const file of selectedFiles) {
+      formData.append('files', file);
+    };
     // formData.append('tags', JSON.stringify(tags.split(',').map(tag => ({ name: tag.trim() }))));
-    formData.append('tags',tags);
+    // formData.append('tags',tags);
+    console.log(formData)
 
     try {
       const response = await axiosClient.post('http://localhost:8080/api/doc/upload', formData, {
@@ -40,17 +42,24 @@ const UploadDoc = () => {
           'Authorization': `Bearer ${token}`
         },
       });
-      console.log(response)
-
       if (response.status === 201) {
-        setUploadStatus('File uploaded successfully!');
+        setUploadStatus('Files uploaded successfully!');
         setTags('')
-        setFile(null)
+        setSelectedFiles([])
       }
+      console.log(response.status)
+
     } catch (error) {
       console.error('Error uploading file:', error);
       setUploadStatus('File upload failed.');
     }
+    // }
+  };
+
+  const handleFileChange = (event) => {
+    setSelectedFiles(event.target.files); // Select multiple files
+    console.log(event.target.files)
+    setUploadStatus(''); // Clear previous status
   };
 
 
@@ -64,7 +73,8 @@ const UploadDoc = () => {
   const handleDrop = (e) => {
 
     e.preventDefault();
-    setFile(...[e.dataTransfer.files[0]])
+    // setFile(e.dataTransfer.files[0])
+    setSelectedFiles(prev => [...prev, ...e.dataTransfer.files])
     // console.log(file)
   }
   const handleDragLeave = (e) => {
@@ -72,9 +82,9 @@ const UploadDoc = () => {
     setDraggingOver(false);
   }
 
-  const handleChangeFile=(e)=>{
+  const handleChangeFile = (e) => {
     e.preventDefault();
-    setFile(null)
+    
     setDraggingOver(false)
 
   }
@@ -97,7 +107,7 @@ const UploadDoc = () => {
             <div className='flex justify-center items-center'>
 
               {
-                !file &&
+                !selectedFiles.length &&
                 <div
                   className="dropzone flex justify-center items-center gap-3"
                   onDragOver={handleDragOver}
@@ -107,12 +117,13 @@ const UploadDoc = () => {
                     border: isDraggingOver ? "4px dashed #00C21A" : "4px dashed #757070"
                   }}
                 >
-                  <div className=' font-thin' style={{color: isDraggingOver ? "#00C21A" : "#757070"}}> <SlCloudUpload size={80} /></div>
+                  <div className=' font-thin' style={{ color: isDraggingOver ? "#00C21A" : "#757070" }}> <SlCloudUpload size={80} /></div>
                   <h1 className='text-lg' style={{ color: isDraggingOver ? "#00C21A" : "#757070" }}>Drag and Drop Files to Upload</h1>
                   <h1 style={{ color: isDraggingOver ? "#00C21A" : "#757070" }}>Or</h1>
                   <input
                     type="file"
-                    onChange={(event) => setFile(event.target.files[0])}
+                    multiple
+                    onChange={handleFileChange}
                     hidden
                     // accept="image/png, image/jpeg"
                     ref={inputRef}
@@ -124,13 +135,26 @@ const UploadDoc = () => {
                 </div>
               }
               {
-                file && 
-                <div className='flex justify-center items-center flex-col gap-3'>
-                  {/* {console.log(file)} */}
-                  <span className='text-xl'>Selected File</span>
-                  <span className='border ps-4 pe-4 pt-2 pb-2 border-black text-lg'>{file.name}</span>
-                  <div className='border p-3 rounded bg-slate-900 text-white hover:cursor-pointer' onClick={handleChangeFile}>Change file</div>
+                selectedFiles.length>0 &&
+                <span className='text-xl'>Selected Files</span>
+              }
+              {
+                selectedFiles &&
+                <>
+                <div className=''>
+
+                  {
+                    selectedFiles && selectedFiles.map((file) => (
+
+                      <div className='flex justify-center items-center flex-col gap-3'>
+                        {/* {console.log(file)} */}
+                        <span className='border ps-4 pe-4 pt-2 pb-2 border-black text-lg'>{file.name}</span>
+                        <div className='border p-3 rounded bg-slate-900 text-white hover:cursor-pointer' onClick={handleChangeFile}>Change file</div>
+                      </div>
+                    ))
+                  }
                 </div>
+                </>
               }
             </div>
 
