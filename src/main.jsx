@@ -9,17 +9,20 @@ import PlayGround from './routes/PlayGround.jsx'
 import { queryClient } from './queryClient.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import { DocumentProvider } from './Features/Auth/contexts/DocumentContext.jsx'
+import { ThemeProvider } from './contexts/ThemeContext.jsx'
 
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient} >
       <StateProvider>
-        <DocumentProvider>
-        <BrowserRouter>
-          <PlayGround />
-        </BrowserRouter>
-        </DocumentProvider>
+        <ThemeProvider>
+          <DocumentProvider>
+            <BrowserRouter>
+              <PlayGround />
+            </BrowserRouter>
+          </DocumentProvider>
+        </ThemeProvider>
       </StateProvider>
     </QueryClientProvider>
   </React.StrictMode>,

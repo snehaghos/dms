@@ -4,6 +4,7 @@ import { useMutation } from '@tanstack/react-query';
 import axiosClient from '../../../axios-client';
 import { useStateContext } from '../contexts/StateContext';
 import { authLogin } from '../services/auth-api';
+import GuestNavbar from '../../Guest/components/GuestNavbar';
 
 const Login = () => {
   const { setUser, setToken, setRefreshToken } = useStateContext();
@@ -49,29 +50,31 @@ const Login = () => {
   }
 
   return (
-    <section className="bg-gray-50">
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+    <section className="bg-gradient-to-br from-fuchsia-50 via-fuchsia-50 to-fuchsia-800 
+    dark:bg-gradient-to-br dark:from-gray-900 dark:via-neutral-800 dark:to-fuchsia-800
+    h-screen flex flex-col w-full justify-center items-center">
+      <div className="flex flex-col items-center justify-center px-6 py-8 md:h-screen lg:py-0 w-full">
+        <div className="w-full rounded-lg bg-fuchsia-950 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] md:mt-0 sm:max-w-md xl:p-0 motion-preset-pop">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+            <h1 className="text-xl font-bold leading-tight tracking-tight text-fuchsia-100 md:text-2xl">
               Sign in to your account
             </h1>
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
               <div>
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                <label className="block mb-2 text-sm font-medium text-white">
                   Your username
                 </label>
                 <input
                   type="text"
                   name="username"
                   ref={usernameRef}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 rounded-lg block w-full p-2.5 "
                   placeholder="Username"
                   required
                 />
               </div>
               <div>
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                <label className="block mb-2 text-sm font-medium text-fuchsia-100 ">
                   Password
                 </label>
                 <input
@@ -79,48 +82,34 @@ const Login = () => {
                   name="password"
                   ref={passwordRef}
                   placeholder="••••••••"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 rounded-lg block w-full p-2.5 "
                   required
                 />
               </div>
               <div className="flex items-center justify-between">
-                <div className="flex items-start">
-                  <div className="flex items-center h-5">
-                    <input
-                      id="remember"
-                      aria-describedby="remember"
-                      type="checkbox"
-                      className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                    />
-                  </div>
-                  <div className="ml-3 text-sm">
-                    <label htmlFor="remember" className="text-gray-500 dark:text-gray-300">
-                      Remember me
-                    </label>
-                  </div>
-                </div>
-                <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-white">
+                
+                <a href="#" className="text-sm font-medium text-primary-600 hover:underline text-fuchsia-100">
                   Forgot password?
                 </a>
               </div>
               <button
                 type="submit"
-                className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-md px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                className="w-full text-fuchsia-100 font-medium rounded-lg text-md px-5 py-2.5 text-center bg-fuchsia-800"
               >
                 Sign in
               </button>
-              <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+              <p className="text-sm font-light text-gray-300">
                 Don't have an account yet?{' '}
-                <Link to="/register" className="font-medium text-primary-600 hover:underline dark:text-white">
+                <Link to="/register" className="font-medium text-primary-600 hover:underline text-[#ac2399] shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
                   Sign up
                 </Link>
 
               </p>
             </form>
 
-            <button onClick={handleLogin}>
+            {/* <button onClick={handleLogin} className='bg-[#800470] text-white px-4 py-3 rounded'>
               Login
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

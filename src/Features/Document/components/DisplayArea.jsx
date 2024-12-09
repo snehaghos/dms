@@ -43,7 +43,7 @@ const DisplayArea = () => {
 
                         {
                             ["image/jpeg", "image/png"].includes(item.mime_type) ?
-                                <>
+                               
                                     <div className='relative'>
                                         {
                                             !isConversion &&
@@ -57,9 +57,16 @@ const DisplayArea = () => {
                                         }
                                         <img src={item.url} alt="There is some problem with this image" />
                                     </div>
-                                </>
+                                
                                 :
-                                <img src={icons.find(x => x.mime_type == item.mime_type).src} alt="" className={`h-full w-full `} />
+                                <div>
+                                   {console.log('hello',icons.find(x => x.mime_type == item.mime_type))}
+                                
+                                hello
+
+                               </div>
+                                // <img src={icons.find(x => x.mime_type == item.mime_type).src} alt="" className={`h-full w-full `} />
+                               
                         }
 
                         <div className='border rounded flex justify-center items-center' onClick={()=>handleClick(item.url)}>

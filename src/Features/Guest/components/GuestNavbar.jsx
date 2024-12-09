@@ -1,31 +1,30 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import DarkMode from '../../../components/DarkMode';
 
 const GuestNavbar = () => {
   const navigate=useNavigate();
-  const handleLoginClick=()=>{
-          navigate('/login');
-  }
+
   const handleAboutUsClick=()=>{
     navigate('/about');
   }
   
 
   return (
-    <header className="absolute w-full p-4 text-white bg-slate-900">
-      <div className="container flex items-center justify-between mx-auto">
-        <h1 className="text-2xl font-bold">DMS</h1>
-        <nav>
-          <ul className="flex space-x-4">
-
-            <li><a href="#features" className="hover:underline">Features</a></li>
-            <li><a href="#examples" className="hover:underline">Examples</a></li>
-            <li><a className="hover:underline" onClick={handleAboutUsClick}>About us</a></li>
-            <li><a className="px-4 py-2 text-blue-600 bg-white rounded hover:bg-gray-200 hover:cursor-pointer" onClick={handleLoginClick}>Login</a></li>
-          </ul>
-        </nav>
+    <div className="w-full p-4 dark:text-fuchsia-100">
+      <div className=" flex items-center justify-between">
+        <div className="text-2xl font-bold motion-preset-shrink dark:text-fuchsia-100 text-neutral-900">DMS</div>
+        
+          <div className="flex gap-6 ">
+            <DarkMode/>
+            <Link to="#features" className="hover:underline motion-preset-pop">Features</Link>
+            <Link to="#examples" className="hover:underline motion-preset-pop">Examples</Link>
+            <Link to="/about" className="hover:underline motion-preset-pop">About us</Link>
+            <Link to="/login" className=" dark:text-[#a73798] text-[#800470] motion-preset-pop font-bold  hover:cursor-pointer" >Login</Link>
+          </div>
+        
       </div>
-    </header>
+    </div>
   );
 }
 
