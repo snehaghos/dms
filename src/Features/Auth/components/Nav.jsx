@@ -21,8 +21,8 @@ const Nav = () => {
     navigate('/upload');
   };
 
-  const handleDocClick=()=>{
-    navigate('/docs');
+  const handleHomeClick=()=>{
+    navigate('/');
   }
 
   const handleLogout = (e) => {
@@ -51,22 +51,22 @@ const Nav = () => {
         <nav>
           <ul className="flex space-x-4">
             <li>
-              <a className="px-4 py-2 text-blue-600 bg-white rounded hover:bg-gray-200" onClick={handleUpload}>
+              <a className="px-4 py-2 text-blue-600 bg-white rounded hover:bg-gray-200 cursor-pointer" onClick={handleUpload}>
                 Upload
               </a>
             </li>
             <li>
-              <a className="hover:underline" onClick={handleDocClick}>
-                Docummets
+              <a className="hover:underline cursor-pointer" onClick={handleHomeClick}>
+                Home
               </a>
             </li>
             <li>
-              <a href="#examples" className="hover:underline">
+              <a href="#examples" className="hover:underline cursor-pointer">
                 Examples
               </a>
             </li>
             <li>
-              <a className="hover:underline" onClick={handleAboutUsClick}>
+              <a className="hover:underline cursor-pointer" onClick={handleAboutUsClick}>
                 About Us
               </a>
             </li>

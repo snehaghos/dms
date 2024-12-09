@@ -43,8 +43,8 @@ const DocumentFilter = ({ onFilter }) => {
   };
 
   return (
-    <div className="mb-5">
-      <div className="flex space-x-4 mb-4">
+    <div className="">
+      <div className="flex space-x-4">
 
         {/* Filter by Type */}
         <div>
