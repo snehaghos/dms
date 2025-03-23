@@ -19,7 +19,7 @@ const Login = () => {
       setUser(response.data.data);   // Ensure response.data contains the correct user data.
       setToken(response.data.token,response.data.refreshToken); // Ensure response.token contains the correct token.
       // setRefreshToken(response.data.refreshToken);
-      navigate('/home');
+      navigate('/all-document');
     },
     onError: (err) => {
       console.log('Login failed:', err);

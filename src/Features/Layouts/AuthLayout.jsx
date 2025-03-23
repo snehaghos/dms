@@ -37,11 +37,11 @@ const AuthLayout = ({ children }) => {
   return (
     <>
       <div className={`${isDark ? 'dark' : ''}`}>
-        <div className={`h-screen bg-gradient-to-br from-fuchsia-50 via-fuchsia-50 to-fuchsia-800
+        <div className={`h-full bg-gradient-to-br from-fuchsia-50 via-fuchsia-50 to-fuchsia-800
              dark:bg-gradient-to-br dark:from-gray-900 dark:via-neutral-800 dark:to-fuchsia-800`}>
           <AuthNavbar />
           {/* <div className='mt-20'>AuthLayout</div> */}
-          <div className='mt-20 text-2xl ps-20 flex justify-left items-center'><span>Hello, </span><span>{authUser.data.name}</span></div>
+          <div className='mt-5 text-2xl ps-20 flex justify-left items-center'><span>Hello, </span><span>{authUser.data.name}</span></div>
           {/* <Home/> */}
           <main className=' ps-20 pe-20'>
 

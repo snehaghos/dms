@@ -25,7 +25,7 @@ const AuthNavbar = () => {
                 localStorage.removeItem('REFRESH_TOKEN');
 
                 // navigate('/login');
-                window.location.href = "/login"
+                window.location.href = "/"
 
             })
             .catch((error) => {

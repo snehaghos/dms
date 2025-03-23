@@ -24,9 +24,9 @@ const DocumentFilter = () => {
 
     return (
         <>
-            <div>
+            <div className='flex gap-3'>
 
-                <div>This is DocumentFilter</div>
+                {/* <div>This is DocumentFilter</div> */}
                 <FilterSelector inputType={inputType} setInputType={setInputType} />
                 <InputBox inputType={inputType} />
             </div>
@@ -43,7 +43,7 @@ const FilterSelector = ({ inputType, setInputType }) => {
     }
     return (
         <>
-            <select name="filterType" id="filterType" onChange={handleChange}>
+            <select name="filterType" id="filterType" onChange={handleChange} className='bg-transparent focus:outline-none'>
                 {
                     filterType && filterType.map((x, index) => (
 
@@ -80,8 +80,8 @@ const InputBox = ({ inputType }) => {
     return (
         <>
             <div className='flex gap-3 justify-center items-center p-3 flex-col xl:flex-row md:flex-row'>
-                <span className='font-bold'>Get your documents for a specific date: </span>
-                <input type={inputType} onChange={handleChange} value={inputType == 'date' ? modifiedDate :searchParam} placeholder='enter date to get documents (YYYY-MM-DD)' className='w-96 border rounded p-2 ' />
+                {/* <span className='font-bold'>Get your documents for a specific date: </span> */}
+                <input type={inputType} onChange={handleChange} value={inputType == 'date' ? modifiedDate :searchParam} placeholder={`Enter ${inputType}`} className='w-96 border-none rounded p-2 focus:outline-none ' />
                 <SearchButton searchParam={searchParam} inputType={inputType} />
             </div>
         </>
@@ -115,6 +115,6 @@ const SearchButton = ({ searchParam, inputType }) => {
     }
 
     return (
-        <span className='flex justify-center items-center border p-2' onClick={handleClick} ><FaArrowRight size={25} /></span>
+        <span className='flex justify-center items-center border rounded-full shadow-md p-2' onClick={handleClick} ><FaArrowRight size={25} /></span>
     )
 }

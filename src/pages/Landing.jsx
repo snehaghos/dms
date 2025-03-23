@@ -1,7 +1,10 @@
 import React from 'react'
 import GuestNavbar from '../Features/Guest/components/GuestNavbar'
+import { useStateContext } from '../Features/Auth/contexts/StateContext'
+import { Link } from 'react-router-dom'
 
 const Landing = () => {
+    const {token}= useStateContext()
     return (
         <div className='h-[100vh] w-full p-10 bg-fuchsia-950 flex justify-center items-center '>
             <div className='h-full w-full bg-gradient-to-br from-fuchsia-50 via-fuchsia-50 to-fuchsia-800
@@ -21,10 +24,12 @@ const Landing = () => {
                         <div className='motion-preset-slide-up dark:text-white text-sm'>
                         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa
                         </div>
-                        <div>
-                            <div className='motion-preset-shrink rounded-r-full rounded-l-full w-48 text-center px-4 py-3 font-semibold text-white bg-[#800470] shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:cursor-pointer
-                             transition ease-in-out delay-50 hover:scale-105'>Get Started</div>
-                        </div>
+                        <Link to={token? '/all-documents':'/login'}>
+                            <div className='motion-preset-shrink rounded-r-full rounded-l-full w-56 text-center px-4 py-3 font-semibold text-white bg-[#800470] shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:cursor-pointer
+                             transition ease-in-out delay-50 hover:scale-105'
+                             
+                             >Get Started</div>
+                        </Link>
                         
                     </div>
                     <div className='h-[85%] w-[85%] motion-preset-pop'>

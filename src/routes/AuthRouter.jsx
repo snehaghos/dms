@@ -7,15 +7,17 @@ import UploadDoc from '../Features/Document/components/UploadDoc';
 import MultiImageToPdf from '../Features/DocumentConversion/pages/MultiImageToPdf';
 import ViewDocument from '../Features/Document/components/ViewDocument';
 import DocxView from '../Features/Document/components/DocxView';
+import Landing from '../pages/Landing';
 
 const AuthRouter = () => {
     console.log("I am in auth Layout");
   return (
     <>
       <Routes>
-            <Route index element={<Home />} />
+            <Route index element={<AllDocuments />} />
             <Route path='/about' element={<AboutUs />} />
             <Route path="/home" element={<Home/>}/>
+            <Route path="/landing" element={<Landing/>}/>
             <Route path="/upload-document" element={<UploadDoc/>}/>
             <Route path="/all-document" element={<AllDocuments/>}/>
             <Route path="/to-pdf" element={<MultiImageToPdf/>}/>
