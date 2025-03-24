@@ -24,7 +24,7 @@ const DocumentFilter = () => {
 
     return (
         <>
-            <div className='flex gap-3'>
+            <div className='grid grid-cols-2 justify-center items-center'>
 
                 {/* <div>This is DocumentFilter</div> */}
                 <FilterSelector inputType={inputType} setInputType={setInputType} />
@@ -43,7 +43,7 @@ const FilterSelector = ({ inputType, setInputType }) => {
     }
     return (
         <>
-            <select name="filterType" id="filterType" onChange={handleChange} className='bg-transparent focus:outline-none'>
+            <select name="filterType" id="filterType" onChange={handleChange} className='bg-transparent focus:outline-none dark:text-neutral-100'>
                 {
                     filterType && filterType.map((x, index) => (
 
@@ -66,23 +66,26 @@ const InputBox = ({ inputType }) => {
         setSerchParam(e.target.value)
 
         if (inputType == "date") {
-            setModifiedDate(prev=>e.target.value)
-            console.log("modified date= ",modifiedDate)
+            setModifiedDate(prev => e.target.value)
+            console.log("modified date= ", modifiedDate)
         }
     }
 
 
     useEffect(() => {
-        setSerchParam(prev=>inputType == 'date' ? modifiedDate : '')
+        setSerchParam(prev => inputType == 'date' ? modifiedDate : '')
         return
     }, [inputType])
 
     return (
         <>
-            <div className='flex gap-3 justify-center items-center p-3 flex-col xl:flex-row md:flex-row'>
+            <div className='flex gap-3 justify-center items-center p-3 flex-col xl:flex-row md:flex-row '>
                 {/* <span className='font-bold'>Get your documents for a specific date: </span> */}
-                <input type={inputType} onChange={handleChange} value={inputType == 'date' ? modifiedDate :searchParam} placeholder={`Enter ${inputType}`} className='w-96 border-none rounded p-2 focus:outline-none ' />
-                <SearchButton searchParam={searchParam} inputType={inputType} />
+                <input type={inputType} onChange={handleChange} value={inputType == 'date' ? modifiedDate : searchParam} placeholder={`Enter ${inputType}`} className='w-96 border-none rounded p-2 focus:outline-none ' />
+                <div className='dark:text-neutral-100'>
+                    <SearchButton searchParam={searchParam} inputType={inputType} />
+
+                </div>
             </div>
         </>
     )

@@ -19,10 +19,10 @@ const AllDocuments = () => {
         <>
             <div className='w-full flex justify-between items-center'>
 
-                <div className='flex justify-left items-center font-bold text-3xl mt-5' >
+                <div className='flex justify-left items-center font-bold text-3xl mt-5 dark:text-neutral-50' >
                     Your documents
                 </div>
-                <div className='font-bold flex justify-self-end items-center border-4 border-purple-800 rounded-lg text-purple-800 p-2'
+                <div className='font-bold flex justify-self-end items-center hover:cursor-pointer border-4 border-purple-800 dark:border-purple-500 dark:text-purple-500 rounded-lg text-purple-800 p-2'
                     onClick={handleClick}
                 >
                    + New PDF
