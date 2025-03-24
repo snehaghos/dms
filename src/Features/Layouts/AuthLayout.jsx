@@ -4,9 +4,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { useStateContext } from '../Auth/contexts/StateContext';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { fetchUser } from '../Auth/services/user-api';
-import { fetchAllDocs } from '../Auth/services/document-api';
 import AuthNavbar from '../Auth/components/AuthNavbar';
-import Home from '../Auth/pages/Home';
 import { useThemeContext } from '../../contexts/ThemeContext';
 
 const AuthLayout = ({ children }) => {
